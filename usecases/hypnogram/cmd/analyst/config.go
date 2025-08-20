@@ -26,7 +26,7 @@ const (
 	// the system is going to work with it by running spade's
 	// setup phase. Actually the length of mpk and msk is set
 	// to this value
-	MaxVecSize = 1000
+	MaxVecSize = 1154
 	// PaddingItem basically it must be anything larger than
 	// the maximum value of biggest element of the vector of
 	// hypnograms, in this case for us is 10, so any x > 10 works

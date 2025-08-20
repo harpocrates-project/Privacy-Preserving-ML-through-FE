@@ -18,7 +18,7 @@ func InitUser(serverAddr string, id int, filePath string) {
 
 func main() {
 	if len(os.Args) < 3 {
-		panic("Usage: ./user <id> <path_to_file>")
+		panic("Usage: ./user <server_address> <id> <path_to_file>")
 	}
 	serverAddr := os.Args[1]
 	id, err := strconv.Atoi(os.Args[2])

@@ -43,7 +43,7 @@ func InitAnalyst(serverAddr string, userID int64, queryValue int64, resultsFile 
 
 func main() {
 	if len(os.Args) < 4 {
-		panic("Usage: ./analyst <id> <query_value> <out_path>")
+		panic("Usage: ./analyst <server_address> <id> <query_value> <out_path>")
 	}
 	serverAddr := os.Args[1]
 	userID, err := strconv.ParseInt(os.Args[2], 10, 64)

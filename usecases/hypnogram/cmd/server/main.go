@@ -14,7 +14,7 @@ func InitServer(serverAddr string) {
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: ./server <serverAddr>")
+		fmt.Println("Usage: ./server <server_address>")
 	}
 	serverAddr := os.Args[1]
 	InitServer(serverAddr)
