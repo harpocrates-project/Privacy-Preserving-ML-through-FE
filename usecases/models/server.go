@@ -6,7 +6,6 @@ import (
 	"SPADE/utils"
 	"context"
 	"errors"
-	"google.golang.org/grpc"
 	"log"
 	"math/big"
 	"net"
@@ -14,6 +13,8 @@ import (
 	"os/signal"
 	"sync"
 	"syscall"
+
+	"google.golang.org/grpc"
 )
 
 // global variable for public parameters
@@ -165,8 +166,8 @@ func StartServer(serverAddr string, config *Config) {
 		// database, you will faced conflict between the old encrypted data using
 		// old set of parameters and the new encrypted data using the new set
 		// note: you can keep it as a comment if you want to measure the storage costs
-		log.Printf("Here we go for deleting database..")
-		utils.DeleteFile(config.DbName)
+		// log.Printf("Here we go for deleting database..")
+		// utils.DeleteFile(config.DbName)
 	}()
 
 	// let's create a shutdown context for server
