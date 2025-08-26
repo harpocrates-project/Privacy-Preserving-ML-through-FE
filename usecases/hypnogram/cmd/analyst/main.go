@@ -8,20 +8,26 @@ import (
 	"math/big"
 	"os"
 	"strconv"
-	"strings"
 )
 
 // InitAnalyst start the SPADE analyst using hypnogram use-case configuration
 func InitAnalyst(serverAddr string, userID int64, queryValue int64, normVal int64, resultsFile string) {
 	config := models.NewConfig(DbName, TbName, NumUsers, MaxVecSize, PaddingItem, TimeOut, MaxMsgSize)
 	// start analyst entity, send a req to server for getting the cipher belongs to
-	// the user with userID and decrypt it for the specific query value queryValue
-	queryValue, results := models.StartAnalyst(serverAddr, config, userID, queryValue+normVal)
+	// the user with userID and decrypt it for the specific normalized queryValue
+	_, results := models.StartAnalyst(serverAddr, config, userID, queryValue+normVal)
+
+	for i, v := range results {
+		if v.Cmp(big.NewInt(1)) != 0 {
+			results[i] = big.NewInt(0)
+		} else {
+			results[i] = big.NewInt(queryValue)
+		}
+	}
 
 	count := 0
-	one := big.NewInt(1)
 	for _, v := range results {
-		if v.Cmp(one) == 0 {
+		if v.Cmp(big.NewInt(queryValue)) == 0 {
 			count++
 		}
 	}
@@ -33,10 +39,12 @@ func InitAnalyst(serverAddr string, userID int64, queryValue int64, normVal int6
 	defer file.Close()
 
 	wr := csv.NewWriter(file)
-	defer wr.Flush()
-
-	st := strings.Fields(strings.Trim(fmt.Sprint(results), "[]"))
-	wr.Write(st)
+	for _, v := range results {
+		if err := wr.Write([]string{v.String()}); err != nil {
+			log.Fatal(err)
+		}
+	}
+	wr.Flush()
 
 	fmt.Printf("Count: %d\n", count)
 }
