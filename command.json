@@ -6,7 +6,7 @@
   "schema-version": "1.0",
   "image": "spade:latest",
   "type": "docker",
-  "command-line": "/bin/analyst #HOST# #SCAN# #QUERY# /output/#SCAN#_#QUERY#.csv",
+  "command-line": "/opt/analyst #HOST# #SCAN# #QUERY# /output/#SCAN#_#QUERY#.txt && python /opt/plot_hypnogram.py /output/#SCAN#_#QUERY#.txt --plot_file /output/#SCAN#_#QUERY#.jpg",
   "mounts": [
     {
       "name": "results-out",
@@ -55,9 +55,7 @@
       "name": "spade_analyst_query_scan",
       "label": "spade_analyst_query",
       "description": "Run spade analyst query with scan name as SPADE user_id",
-      "contexts": [
-        "xnat:imageScanData"
-      ],
+      "contexts": ["xnat:imageScanData"],
       "external-inputs": [
         {
           "name": "scan",
