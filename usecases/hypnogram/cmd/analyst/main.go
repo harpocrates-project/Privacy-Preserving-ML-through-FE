@@ -12,11 +12,11 @@ import (
 )
 
 // InitAnalyst start the SPADE analyst using hypnogram use-case configuration
-func InitAnalyst(serverAddr string, userID int64, queryValue int64, resultsFile string) {
+func InitAnalyst(serverAddr string, userID int64, queryValue int64, normVal int64, resultsFile string) {
 	config := models.NewConfig(DbName, TbName, NumUsers, MaxVecSize, PaddingItem, TimeOut, MaxMsgSize)
 	// start analyst entity, send a req to server for getting the cipher belongs to
 	// the user with userID and decrypt it for the specific query value queryValue
-	queryValue, results := models.StartAnalyst(serverAddr, config, userID, queryValue)
+	queryValue, results := models.StartAnalyst(serverAddr, config, userID, queryValue+normVal)
 
 	count := 0
 	one := big.NewInt(1)
@@ -61,5 +61,5 @@ func main() {
 
 	resultsFile := os.Args[4]
 
-	InitAnalyst(serverAddr, userID, queryValue, resultsFile)
+	InitAnalyst(serverAddr, userID, queryValue, 1, resultsFile)
 }
