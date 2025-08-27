@@ -1,6 +1,6 @@
-2025/08/20 14:33:45 >>> Analyst starts connecting to the server..
+2025/08/27 12:54:02 >>> Analyst starts connecting to the server..
 >>>  q : 100000000000000000000000000000001
->>>  g : 5c3e310148b2c5aceacfb1743ba1353c
+>>>  g : 5f8189f3a3df6c76216bc49283c20655
 DEBUG: ptSize:  965
-2025/08/20 14:33:45 Analyst finished in 48.661835ms
-Count: 373
+2025/08/27 12:54:02 Analyst finished in 44.265739ms
+Count: 66
