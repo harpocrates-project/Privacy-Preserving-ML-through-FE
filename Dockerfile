@@ -15,3 +15,15 @@ COPY --from=build /opt/user /opt/user
 COPY --from=build /SPADE/usecases/hypnogram/gui/utils/plot_hypnogram.py /opt/plot_hypnogram.py
 
 RUN pip install --no-cache-dir matplotlib
+
+RUN echo
+
+COPY <<"EOT" /opt/analyst_command.sh
+#!/bin/bash
+HOST=$1
+SCAN=$2
+QUERY=$3
+/opt/analyst ${HOST} ${SCAN} ${QUERY} /output/${SCAN}_${QUERY}.txt && python /opt/plot_hypnogram.py /output/${SCAN}_${QUERY}.txt --plot_file /output/${SCAN}_${QUERY}.jpg
+EOT
+
+RUN chmod +x /opt/analyst_command.sh
