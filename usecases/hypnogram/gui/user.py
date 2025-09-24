@@ -4,6 +4,7 @@ from tkinter import filedialog
 from base import CommandLineWrapper
 from utils import plot_hypnogram
 
+
 class UserWrapper(CommandLineWrapper):
     def __init__(self, master=None, default_exe=None, default_analyst=None, default_server=None):
         self.server = tk.StringVar(value=default_server)
