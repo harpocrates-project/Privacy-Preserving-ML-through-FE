@@ -307,7 +307,8 @@ normal_hypnograms_zero_query = load_csvs_to_dataframes('./VIFASOM/plaintext_data
 insomnia_hypnograms_zero_query = load_csvs_to_dataframes('./VIFASOM/plaintext_data/insomnia', event_to_int_map=zero_query)
 sleep_misperception_insomnia_hypnograms_zero_query = load_csvs_to_dataframes('./VIFASOM/plaintext_data/sleep misperception insomnia', event_to_int_map=zero_query)
 
-# plot_hypnogram_with_stats(insomnia_hypnograms_zero_query['20181031T005107']['event_int'])
+#plot_hypnogram_with_stats(insomnia_hypnograms['20181031T005107']['event_int'])
+
 normal_sleep_statistics = calculate_sleep_statistics(normal_hypnograms)
 insomnia_sleep_stvatistics = calculate_sleep_statistics(insomnia_hypnograms)
 sleep_misperception_insomnia_sleep_statistics = calculate_sleep_statistics(sleep_misperception_insomnia_hypnograms)
@@ -393,6 +394,3 @@ _plot_average_statistics(avg_stats, "Average Sleep Statistics per Group")
 
 # Plot the averages for the three zero‑query groups
 _plot_average_statistics(avg_stats_zero, "Average Sleep Statistics per Group (Query 0)")
-export_event_int_to_text(normal_hypnograms_zero_query, './VIFASOM/query_results/normal')
-export_event_int_to_text(insomnia_hypnograms_zero_query, './VIFASOM/query_results/insomnia')
-export_event_int_to_text(sleep_misperception_insomnia_hypnograms_zero_query, './VIFASOM/query_results/sleep misperception insomnia')
