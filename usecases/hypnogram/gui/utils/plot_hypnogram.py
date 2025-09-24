@@ -125,7 +125,7 @@ def sleep_statistics(hypno, sf_hyp):
     return stats
 
 
-def _load_hypnogram(file_path):
+def load_hypnogram(file_path):
     stages = []
     with open(file_path, "r") as f:
         for line in f:
@@ -208,5 +208,5 @@ if __name__ == "__main__":
              "If omitted, the plot is only shown interactively.",
     )
     args = parser.parse_args()
-    hypnogram = _load_hypnogram(args.hypnogram_file)
+    hypnogram = load_hypnogram(args.hypnogram_file)
     plot_hypnogram_with_stats(hypnogram, save_path=args.plot_file)

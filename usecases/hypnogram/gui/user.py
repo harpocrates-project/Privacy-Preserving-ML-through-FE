@@ -2,7 +2,8 @@ import tkinter as tk
 from tkinter import filedialog
 
 from base import CommandLineWrapper
-from utils import plot_hypnogram
+from utils import plot_hypnogram_with_stats as plot_hypnogram
+from utils import load_hypnogram
 
 
 class UserWrapper(CommandLineWrapper):
@@ -15,7 +16,7 @@ class UserWrapper(CommandLineWrapper):
 
     def on_add_hypnogram_data(self, *args, **kwargs):
         file_path = self.hypnogram_data.get()
-        plot_hypnogram(file_path)
+        plot_hypnogram(load_hypnogram(file_path))
 
     @property
     def terminal_cmd(self):
