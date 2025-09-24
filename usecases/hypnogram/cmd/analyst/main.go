@@ -19,7 +19,7 @@ func InitAnalyst(serverAddr string, userID int64, queryValue int64, normVal int6
 
 	for i, v := range results {
 		if v.Cmp(big.NewInt(1)) != 0 {
-			results[i] = big.NewInt(0)
+			results[i] = big.NewInt(9)
 		} else {
 			results[i] = big.NewInt(queryValue)
 		}
