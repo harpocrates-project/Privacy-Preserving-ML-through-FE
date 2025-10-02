@@ -19,22 +19,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Optional: cache Go modules (speeds up repeated runs)
-      - name: Cache Go modules
-        uses: actions/cache@v4
+      - name: Set up Go
+        uses: actions/setup-go@v4
         with:
-          path: |
-            ~/.cache/go-build
-            ~/.cache/gopath/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
+          go-version: '1.24.0'
 
-      # Run the local composite action
       - name: Run golangci-lint
-        uses: ./.github/actions/golangci-lint-action
+        uses: golangci/golangci-lint-action@v8
         with:
-          # Optional: change Go and golangci-lint versions here
-          go-version: "1.21"
-          golangci-version: "latest"
-          args: "--config .golangci.yml"
+          version: latest          
