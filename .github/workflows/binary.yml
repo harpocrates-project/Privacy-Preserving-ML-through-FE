@@ -5,6 +5,7 @@ on:
 
 jobs:
   build:
+    name: binary-build
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +19,7 @@ jobs:
 
       - name: Build binary
         run: |
-          go build -o spade 
+          go build -v -o spade 
 
       - name: Upload binary artifact
         uses: actions/upload-artifact@v4
